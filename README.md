@@ -58,31 +58,30 @@ The solution aims to:
 
 ## Data Sources
 
-The project processes 10 operational datasets:
+The project integrates **10 operational datasets** from a simulated FMCG sales distribution system. These datasets include transactional data, master data, planning data, and business reference data used to build an end-to-end analytical data warehouse.
 
-| Dataset             |
-| ------------------- |
-| sales_transactions  |
-| customer_master     |
-| product_master      |
-| employee_master     |
-| distributor_master  |
-| distributor_orders  |
-| return_transactions |
-| territory_mapping   |
-| promotion_program   |
-| sales_target_plan   |
+| Source | Dataset               | Format | Refresh Frequency | Business Purpose                        |
+| ------ | --------------------- | ------ | ----------------- | --------------------------------------- |
+| SRC-01 | `sales_transactions`  | CSV    | Daily (T+1)       | Sales transaction records               |
+| SRC-02 | `sales_target_plan`   | XLSX   | Annual / Revision | Monthly sales targets                   |
+| SRC-03 | `customer_master`     | CSV    | Weekly            | Customer master data                    |
+| SRC-04 | `product_master`      | XLSM   | Monthly           | Product catalog and pricing             |
+| SRC-05 | `distributor_orders`  | XLSB   | Daily (T+1)       | Distributor order fulfillment           |
+| SRC-06 | `distributor_master`  | CSV    | Weekly            | Distributor master data                 |
+| SRC-07 | `employee_master`     | XLSX   | On Change         | Sales employee information              |
+| SRC-08 | `territory_mapping`   | XLSX   | Quarterly         | Customer–employee territory assignments |
+| SRC-09 | `return_transactions` | CSV    | Daily (T+1)       | Product return transactions             |
+| SRC-10 | `promotion_program`   | XLSX   | Event-based       | Promotion campaign information          |
 
-### File Formats
+### Data Characteristics
 
-* CSV
-* Excel (.xlsx)
+* **Total datasets:** 10
+* **Total records processed:** 150,000+ rows
+* **File formats:** CSV, XLSX, XLSM, XLSB
+* **Data refresh:** Daily, Weekly, Monthly, Quarterly, and Event-based
+* **Business domains:** Sales, Distribution, Marketing, Finance, and Human Resources
 
-### Total Records Processed
-
-* 150,000+ rows
-
----
+The datasets were ingested into the Bronze layer without modification, standardized and validated in the Silver layer, and modeled into dimension tables, fact tables, and business marts in the Gold layer to support analytical reporting.
 
 # 🏗️ Solution Architecture
 
